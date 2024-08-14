@@ -1,0 +1,46 @@
+**PRACTICE
+1.Find the distinct values for the extended step.
+SELECT 
+distinct Extended_step
+FROM salary_range_by_job_classification;
+
+2.What is the maximum biweekly high rate of pay (please include the dollar sign and decimal point in your answer)? 
+SELECT 
+Max(Biweekly_high_Rate) 
+FROM salary_range_by_job_classification;
+
+3.What is the pay type for all the job codes that start with '03'?
+Select
+job_code,
+pay_type
+FROM salary_range_by_job_classification
+WHERE job_code LIKE '03%';
+
+4.Run a query to find the Effective Date (eff_date) or Salary End Date (sal_end_date) for grade Q90H0?
+Select
+Grade,Eff_Date,Sal_End_Date
+FROM salary_range_by_job_classification
+WHERE Grade = 'Q90H0';
+
+5. What Step are Job Codes 0110-0400?
+SELECT *
+FROM salary_range_by_job_classification
+WHERE JOb_Code BETWEEN 0110 AND 0400;
+
+6. What is the Biweekly High Rate minus the Biweekly Low Rate for job Code 0170?
+SELECT JOb_Code,Biweekly_High_Rate-Biweekly_Low_Rate AS New_rate
+FROM salary_range_by_job_classification
+WHERE JOb_Code = '0170';
+
+7. What is the Extended Step for Pay Types M, H, and D? 
+SELECT *
+FROM salary_range_by_job_classification
+WHERE Pay_Type IN ('M','H','D');
+
+8. What is the step for Union Code 990 and a Set ID of SFMTA or COMMN? 
+SELECT SetID, Union_Code, Step
+FROM salary_range_by_job_classification
+WHERE  Union_Code = '990'
+AND SetID IN ('SFMTA', 'COMMN')
+
+
