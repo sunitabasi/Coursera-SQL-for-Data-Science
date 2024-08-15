@@ -1,0 +1,33 @@
+1. How many albums does the artist Led Zeppelin have? 
+
+SELECT COUNT(*) 
+FROM artists 
+LEFT JOIN albums 
+ON artists.artistid = albums.artistid
+
+WHERE artists.Name = 'Led Zeppelin';
+
+2.Create a list of album titles and the unit prices for the artist "Audioslave".
+SELECT albums.title AS albumtitle, invoice_items.unitprice AS unitprice
+FROM artists
+LEFT JOIN albums ON artists.artistid = albums.artistid
+LEFT JOIN tracks ON albums.albumid = tracks.albumid
+LEFT JOIN invoice_items ON tracks.trackid = invoice_items.trackid
+WHERE artists.Name = "Audioslave";
+
+3. Find the first and last name of any customer who does not have an invoice. Are there any customers returned from the query?  
+SELECT customers.firstname AS firstname, customers.lastname AS lastname, invoices.invoiceid As invoice
+FROM customers
+LEFT JOIN invoices ON customers.customerid = invoices.customerid
+WHERE invoices.invoiceid IS NULL;
+
+4.Find the total price for each album.What is the total price for the album “Big Ones”?
+SELECT albums.title AS album,SUM(tracks.unitprice) AS totalprice, albums.albumid     
+FROM albums
+LEFT JOIN tracks ON albums.albumid = tracks.albumid
+WHERE albums.title = "Big Ones"
+GROUP BY albums.title;
+
+
+
+
